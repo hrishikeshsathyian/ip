@@ -21,4 +21,9 @@ public class Task {
         System.out.println("Nice! I've marked this task as undone: \n [ ] " + this.description);
     }
 
+    @Override
+    public String toString() {
+        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+    }
+
 }
