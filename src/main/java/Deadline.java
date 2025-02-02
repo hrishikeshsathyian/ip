@@ -10,18 +10,21 @@ public class Deadline extends Task {
     public Deadline(String description, String by, boolean isDone) {
         super(description);
         super.isDone = isDone;
-        try {
-            this.by = LocalDateTime.parse(by, INPUT_FORMAT).format(OUTPUT_FORMAT);
-        } catch (DateTimeParseException e) {
-            System.out.println("Invalid date format. Please use yyyy-MM-dd HHmm format.");
-            this.by = LocalDateTime.now().format(OUTPUT_FORMAT);
-        }
+        this.by = by;
+
     }
 
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        String byFormatted = this.by;
+        try {
+            byFormatted = LocalDateTime.parse(by.trim(), INPUT_FORMAT).format(OUTPUT_FORMAT);
+        } catch (DateTimeParseException e) {
+            System.out.println("Invalid date format. Please use yyyy-MM-dd HHmm format.");
+            byFormatted = LocalDateTime.now().format(OUTPUT_FORMAT);
+        }
+        return "[D]" + super.toString() + " (by: " + byFormatted + ")";
     }
 
     @Override
