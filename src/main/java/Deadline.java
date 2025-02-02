@@ -2,8 +2,9 @@ public class Deadline extends Task {
 
     protected String by;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by, boolean isDone) {
         super(description);
+        super.isDone = isDone;
         this.by = by;
     }
 
@@ -21,5 +22,12 @@ public class Deadline extends Task {
     public void markAsUnDone() {
         super.isDone = false;
         System.out.println("Nice! I've marked this task as undone: \n " + this.toString());
+    }
+
+    @Override
+    public String generateTextToFile() {
+        int status = this.isDone ? 1 : 0;
+        String result = "DEADLINE|%d|%s|%s".formatted(status,this.description,this.by);
+        return result;
     }
 }
