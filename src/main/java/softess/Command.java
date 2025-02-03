@@ -4,6 +4,7 @@ package softess;
 public abstract class Command {
 
     /** The user interface associated with this command. */
+
     protected UserInterface ui;
 
     /**

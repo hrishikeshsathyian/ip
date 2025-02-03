@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Softess {
-
+    private static final String FILE_PATH = "src/main/data/softess.txt";
     private DataHandler dataHandler;
     private TaskList tasks;
     private UserInterface ui;
@@ -33,7 +33,7 @@ public class Softess {
             scanner.close();
         }
     }
-    public static void main(String[] args)  {
-        new Softess("src/main/data/softess.txt").run();
+    public static void main(String[] args) {
+        new Softess(FILE_PATH).run();
     }
 }
