@@ -41,6 +41,9 @@ public class Parser {
         } else if (Objects.equals(userInput[0], "delete")) {
             int num = Integer.valueOf(userInput[1]);
             return new DeleteCommand(ui, tasks, num);
+        } else if (Objects.equals(userInput[0], "find")) {
+            String[] split = fullUserInput.split("find");
+            return new FindCommand(ui, tasks, split[1]);
         } else {
             throw new SoftessException.InvalidCommandException();
         }

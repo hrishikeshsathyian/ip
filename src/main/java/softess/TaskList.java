@@ -40,5 +40,23 @@ public class TaskList {
         tasks.remove(index - 1);
     }
 
+    public void findTasks(String query) {
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+        for (Task task : this.tasks) {
+            if (task.toString().toLowerCase().contains(query.toLowerCase())) {
+                matchingTasks.add(task);
+            }
+        }
+
+        if (matchingTasks.isEmpty()) {
+            System.out.println("No matching tasks found.");
+        } else {
+            System.out.println("Here are the tasks that contained the word you searched for: ");
+            for (int i = 0; i < matchingTasks.size(); i++) {
+                System.out.println(String.format("%d. %s", (i + 1), matchingTasks.get(i).toString()));
+            }
+        }
+    }
+
 
 }

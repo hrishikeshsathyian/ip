@@ -18,7 +18,7 @@ public class UserInterface {
      * Displays a welcome message to the user.
      */
     public void showWelcomeMessage() {
-        System.out.println("Hello! I'm softess.Softess");
+        System.out.println("Hello! I'm Softess");
         System.out.println("What can I do for you?\n");
     }
 
@@ -26,7 +26,7 @@ public class UserInterface {
      * Displays a goodbye message when the user exits the application.
      */
     public void showGoodByeMessage() {
-        System.out.println("softess.Softess: Bye. Hope to see you again soon noob!");
+        System.out.println("Bye. Hope to see you again soon noob!");
     }
 
     /**
