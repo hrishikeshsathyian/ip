@@ -1,3 +1,5 @@
+package softess;
+
 public class EventCommand extends Command {
 
     public TaskList tasks;

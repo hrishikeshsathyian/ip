@@ -1,3 +1,5 @@
+package softess;
+
 public class SoftessException extends Exception {
     public SoftessException(String message) {
         super(message);
@@ -11,7 +13,7 @@ public class SoftessException extends Exception {
 
     public static class InvalidTodoException extends SoftessException {
         public InvalidTodoException() {
-            super("The ToDo command is missing required arguments. Please give a valid description");
+            super("The softess.ToDo command is missing required arguments. Please give a valid description");
         }
     }
 

@@ -1,3 +1,5 @@
+package softess;
+
 import java.util.Objects;
 
 public class Parser {

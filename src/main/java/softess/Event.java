@@ -1,14 +1,20 @@
-public class ToDo extends Task {
+package softess;
 
+public class Event extends Task {
+    protected String from;
+    protected String to;
 
-    public ToDo(String description, boolean isDone) {
+    public Event(String description, String from, String to, boolean isDone) {
         super(description);
         super.isDone = isDone;
+        this.from = from;
+        this.to = to;
+
     }
 
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "[E]" + super.toString() + " (from: " + from + " to: " + to + ")";
     }
 
     @Override
@@ -16,17 +22,15 @@ public class ToDo extends Task {
         super.isDone = true;
         System.out.println("Nice! I've marked this task as done: \n " + this.toString());
     }
-
     @Override
     public void markAsUnDone() {
         super.isDone = false;
         System.out.println("Nice! I've marked this task as undone: \n " + this.toString());
     }
-
     @Override
     public String generateTextToFile() {
         int status = this.isDone ? 1 : 0;
-        String result = "TODO|%d|%s".formatted(status,this.description);
+        String result = "EVENT|%d|%s|%s|%s".formatted(status,this.description,this.from,this.to);
         return result;
     }
 }
