@@ -8,7 +8,7 @@ public class ListCommand extends Command {
         this.tasks = tasks;
     }
     @Override
-    public void trigger() {
-        this.tasks.listTasks();
+    public String trigger() {
+        return this.tasks.listTasks();
     }
 }

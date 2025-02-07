@@ -15,6 +15,7 @@ public class Softess {
         this.tasks = new TaskList(dataHandler.loadData());
     }
 
+    @Deprecated
     public void run() {
         this.ui.showWelcomeMessage();
         Scanner scanner = new Scanner(System.in);
@@ -32,6 +33,21 @@ public class Softess {
         } finally {
             scanner.close();
         }
+    }
+
+    public String getResponse(String text) {
+        Parser parser = new Parser(ui, tasks);
+        try {
+           Command c = parser.parseCommand(text);
+           return c.trigger();
+        } catch (SoftessException e) {
+            ui.showErrorMessage(e.getMessage());
+        }
+        return "Something went wrong";
+    }
+
+    public void updateData() throws IOException {
+        this.dataHandler.saveData(this.tasks.getTasks());
     }
     public static void main(String[] args) {
         new Softess(FILE_PATH).run();

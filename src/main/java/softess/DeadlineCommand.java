@@ -12,7 +12,7 @@ public class DeadlineCommand extends Command {
         this.by = by;
     }
     @Override
-    public void trigger() {
-        this.tasks.addTask(new Deadline(description, by, false));
+    public String trigger() {
+        return this.tasks.addTask(new Deadline(description, by, false));
     }
 }

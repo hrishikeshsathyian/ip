@@ -25,8 +25,8 @@ public class UserInterface {
     /**
      * Displays a goodbye message when the user exits the application.
      */
-    public void showGoodByeMessage() {
-        System.out.println("Bye. Hope to see you again soon noob!");
+    public String showGoodByeMessage() {
+        return "Bye. Hope to see you again soon noob!";
     }
 
     /**

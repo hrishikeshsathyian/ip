@@ -10,7 +10,7 @@ public class ToDoCommand extends Command {
         this.description = description;
     }
     @Override
-    public void trigger() {
-        this.tasks.addTask(new ToDo(description,false));
+    public String trigger() {
+        return this.tasks.addTask(new ToDo(description,false));
     }
 }

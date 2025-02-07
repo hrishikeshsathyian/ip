@@ -11,7 +11,7 @@ public class FindCommand extends Command{
     }
 
     @Override
-    public void trigger() {
-        this.tasks.findTasks(query);
+    public String trigger() {
+        return this.tasks.findTasks(query);
     }
 }

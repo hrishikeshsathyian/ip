@@ -14,7 +14,7 @@ public class EventCommand extends Command {
         this.to = to;
     }
     @Override
-    public void trigger() {
-        this.tasks.addTask(new Event(description, from, to, false));
+    public String trigger() {
+        return this.tasks.addTask(new Event(description, from, to, false));
     }
 }

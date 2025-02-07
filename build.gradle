@@ -28,7 +28,7 @@ test {
 }
 
 application {
-    mainClass.set("softess.Softess")
+    mainClass.set("softess.Launcher")
 }
 
 shadowJar {

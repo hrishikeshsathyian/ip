@@ -12,11 +12,11 @@ public class MarkCommand extends Command {
         this.toMark = toMark;
     }
     @Override
-    public void trigger() {
+    public String trigger() {
         if (toMark) {
-            this.tasks.markTaskAsDone(this.index);
+            return this.tasks.markTaskAsDone(this.index);
         } else {
-            this.tasks.markTaskAsUndone(this.index);
+            return this.tasks.markTaskAsUndone(this.index);
         }
 
     }
