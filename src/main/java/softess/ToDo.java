@@ -14,15 +14,15 @@ public class ToDo extends Task {
     }
 
     @Override
-    public void markAsDone() {
+    public String markAsDone() {
         super.isDone = true;
-        System.out.println("Nice! I've marked this task as done: \n " + this.toString());
+        return "Nice! I've marked this task as done: \n " + this.toString();
     }
 
     @Override
-    public void markAsUnDone() {
+    public String markAsUnDone() {
         super.isDone = false;
-        System.out.println("Nice! I've marked this task as undone: \n " + this.toString());
+        return "Nice! I've marked this task as undone: \n " + this.toString();
     }
 
     @Override

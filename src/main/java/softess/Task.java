@@ -41,17 +41,19 @@ public abstract class Task {
     /**
      * Marks this task as completed and prints a confirmation message.
      */
-    public void markAsDone() {
+    public String markAsDone() {
         this.isDone = true;
-        System.out.println("Nice! I've marked this task as done: \n [X] " + this.description);
+        String res = "Nice! I've marked this task as done: \n [X] " + this.description;
+        return res;
     }
 
     /**
      * Marks this task as not completed and prints a confirmation message.
      */
-    public void markAsUnDone() {
+    public String markAsUnDone() {
         this.isDone = false;
-        System.out.println("Nice! I've marked this task as undone: \n [ ] " + this.description);
+        String res = "Nice! I've marked this task as undone: \n [ ] " + this.description;
+        return res;
     }
 
     /**

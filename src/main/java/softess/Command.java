@@ -19,5 +19,5 @@ public abstract class Command {
     /**
      * Executes the action defined by this command.
      */
-    public abstract void trigger();
+    public abstract String trigger();
 }

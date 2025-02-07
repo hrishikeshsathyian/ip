@@ -6,7 +6,7 @@ public class ExitCommand extends Command {
         super(ui);
     }
     @Override
-    public void trigger() {
-        super.ui.showGoodByeMessage();
+    public String trigger() {
+        return super.ui.showGoodByeMessage();
     }
 }

@@ -10,7 +10,7 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
     @Override
-    public void trigger() {
-        this.tasks.removeTask(this.index);
+    public String trigger() {
+        return this.tasks.removeTask(this.index);
     }
 }
