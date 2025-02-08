@@ -37,7 +37,7 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     private void handleUserInput() throws IOException {
-        String input = userInput.getText();
+        String input = this.userInput.getText();
         String response = this.softess.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
