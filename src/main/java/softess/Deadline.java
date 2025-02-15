@@ -12,7 +12,6 @@ import java.time.format.DateTimeParseException;
  * Supported date format for input: {@code yyyy-MM-dd HHmm} (e.g., 2024-02-03 1800).
  * The output format is displayed as: {@code MMM dd yyyy, h:mm a} (e.g., Feb 03 2024, 6:00 PM).
  *
- *
  * @author Hrishikesh Sathyian
  */
 public class Deadline extends Task {
@@ -36,22 +35,29 @@ public class Deadline extends Task {
     public Deadline(String description, String by, boolean isDone) {
         super(description);
         super.isDone = isDone;
-        this.by = by;
+
+        // Try parsing the input date, if invalid, update `by` with the current date
+        try {
+            LocalDateTime.parse(by.trim(), INPUT_FORMAT); // Validate format
+            this.by = by.trim();
+        } catch (DateTimeParseException e) {
+            System.out.println("Invalid date format detected. Setting deadline to today's date.");
+            this.by = LocalDateTime.now().format(INPUT_FORMAT); // Correcting to today's date in proper format
+        }
     }
 
     /**
      * Returns a formatted string representation of the deadline task.
-     * If the deadline format is incorrect, the current date and time will be used instead.
      *
      * @return A formatted string representation of the deadline.
      */
     @Override
     public String toString() {
-        String byFormatted = this.by;
+        String byFormatted;
         try {
-            byFormatted = LocalDateTime.parse(by.trim(), INPUT_FORMAT).format(OUTPUT_FORMAT);
+            byFormatted = LocalDateTime.parse(this.by, INPUT_FORMAT).format(OUTPUT_FORMAT);
         } catch (DateTimeParseException e) {
-            System.out.println("Invalid date format. Please use yyyy-MM-dd HHmm format.");
+            // This should not happen, but in case it does, default to today's date
             byFormatted = LocalDateTime.now().format(OUTPUT_FORMAT);
         }
         return "[D]" + super.toString() + " (by: " + byFormatted + ")";
