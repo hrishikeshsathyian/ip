@@ -44,7 +44,8 @@ public class Parser {
             return new EventCommand(ui, tasks, description, time[0].trim(), time[1].trim());
         } else if (Objects.equals(userInput[0], "todo")) {
             String[] split = fullUserInput.split("todo");
-            assert split.length > 1 && !split[1].trim().isEmpty() : "Todo description cannot be empty";
+            boolean toDoDescriptionIsEmpty = !split[1].trim().isEmpty();
+            assert split.length > 1 && toDoDescriptionIsEmpty: "Todo description cannot be empty";
             return new ToDoCommand(ui, tasks, split[1].trim());
         } else if (Objects.equals(userInput[0], "delete")) {
             assert userInput.length > 1 : "Delete command requires an index";
