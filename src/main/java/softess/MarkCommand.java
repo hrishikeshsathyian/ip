@@ -4,20 +4,19 @@ public class MarkCommand extends Command {
 
     public TaskList tasks;
     public int index;
-    public boolean toMark;
-    public MarkCommand(UserInterface ui, TaskList tasks, int index, boolean toMark) {
+    public boolean shouldMark;
+    public MarkCommand(UserInterface ui, TaskList tasks, int index, boolean shouldMark) {
         super(ui);
         this.tasks = tasks;
         this.index = index;
-        this.toMark = toMark;
+        this.shouldMark = shouldMark;
     }
     @Override
     public String trigger() {
-        if (toMark) {
+        if (shouldMark) {
             return this.tasks.markTaskAsDone(this.index);
         } else {
             return this.tasks.markTaskAsUndone(this.index);
         }
-
     }
 }
