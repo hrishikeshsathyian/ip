@@ -19,6 +19,8 @@ public class Parser {
 
         if (Objects.equals(userInput[0], "bye")) {
             return new ExitCommand(ui);
+        } else if (Objects.equals(userInput[0], "remind")) {
+            return new RemindCommand(ui, tasks);
         } else if (Objects.equals(userInput[0], "list")) {
             return new ListCommand(ui, tasks);
         } else if (Objects.equals(userInput[0], "mark")) {
