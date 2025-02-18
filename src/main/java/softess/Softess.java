@@ -41,9 +41,9 @@ public class Softess {
            Command c = parser.parseCommand(text);
            return c.trigger();
         } catch (SoftessException e) {
-            ui.showErrorMessage(e.getMessage());
+            return "Oops! Softess got an error : \n " + e.getMessage();
         }
-        return "Something went wrong";
+
     }
 
     public void updateData() throws IOException {
