@@ -11,14 +11,32 @@ import java.util.List;
  */
 public class RemindCommand extends Command {
 
+    /**
+     * The task list to check for upcoming deadlines.
+     */
     private TaskList tasks;
+
+    /**
+     * The date-time format expected for deadline tasks.
+     */
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
+    /**
+     * Constructs a RemindCommand with the specified user interface and task list.
+     *
+     * @param ui The user interface handling interactions.
+     * @param tasks The task list containing tasks.
+     */
     public RemindCommand(UserInterface ui, TaskList tasks) {
         super(ui);
         this.tasks = tasks;
     }
 
+    /**
+     * Triggers the command to check for deadline tasks that are due within the next 3 days.
+     *
+     * @return A string listing all upcoming deadline tasks or a message if none are found.
+     */
     @Override
     public String trigger() {
         LocalDateTime now = LocalDateTime.now();
