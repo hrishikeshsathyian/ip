@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Softess {
-    private static final String FILE_PATH = "src/main/data/softess.txt";
+    private static final String FILE_PATH = "src/main/resources/data/softess.txt";
     private DataHandler dataHandler;
     private TaskList tasks;
     private UserInterface ui;
