@@ -1,58 +1,49 @@
 package softess;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
 /**
- * Handles reading and writing task data to a file.
- * This class provides methods to load tasks from a file and save tasks to a file,
- * ensuring persistence of task data.
- *
- * The file format follows a structured approach where each task is stored in a
- * line-separated manner with pipe ("|") delimiters.
- *
- * Supported task types:
- * <ul>
- *     <li>TODO</li>
- *     <li>DEADLINE</li>
- *     <li>EVENT</li>
- * </ul>
- *
- * The task completion status is represented as:
- * <ul>
- *     <li>"1" for completed</li>
- *     <li>"0" for not completed</li>
- * </ul>
- *
- * @author Hrishikesh Sathyian
+ * Handles reading and writing task data to an external file.
+ * This ensures data persists outside the JAR file.
  */
 public class DataHandler {
     private final String filePath;
 
     /**
-     * Constructs a new {@code DataHandler} with the specified file path.
-     *
-     * @param filePath the path to the file where tasks are stored
+     * Constructs a new {@code DataHandler} and ensures the data file exists.
      */
-    public DataHandler(String filePath) {
-        this.filePath = filePath;
+    public DataHandler() {
+        // Store in the user's home directory under ".softess/tasks.txt"
+        String userHome = System.getProperty("user.home");
+        String directoryPath = userHome + File.separator + ".softess";
+        this.filePath = directoryPath + File.separator + "tasks.txt";
+
+
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        File file = new File(filePath);
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            System.err.println("Error creating data file: " + e.getMessage());
+        }
     }
 
     /**
-     * Loads task data from the specified file and returns a list of tasks.
+     * Loads task data from the file.
      *
      * @return an {@code ArrayList} containing the loaded tasks
      */
     public ArrayList<Task> loadData() {
         ArrayList<Task> tasks = new ArrayList<>();
-        try {
-            File taskFile = new File(filePath);
-            Scanner s = new Scanner(taskFile);
+        try (Scanner s = new Scanner(new File(filePath))) {
             while (s.hasNext()) {
                 String[] taskData = s.nextLine().split("\\|");
                 boolean status = Objects.equals(taskData[1], "1");
@@ -70,22 +61,22 @@ public class DataHandler {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            System.err.println("Data file not found. Starting fresh.");
         }
         return tasks;
     }
 
     /**
-     * Saves the list of tasks to the specified file.
+     * Saves the list of tasks to the file.
      *
      * @param tasks the list of tasks to be saved
      * @throws IOException if an I/O error occurs while writing to the file
      */
     public void saveData(ArrayList<Task> tasks) throws IOException {
-        FileWriter fw = new FileWriter(filePath, false);
-        for (Task task : tasks) {
-            fw.write(task.generateTextToFile() + System.lineSeparator());
+        try (FileWriter fw = new FileWriter(filePath, false)) {
+            for (Task task : tasks) {
+                fw.write(task.generateTextToFile() + System.lineSeparator());
+            }
         }
-        fw.close();
     }
 }

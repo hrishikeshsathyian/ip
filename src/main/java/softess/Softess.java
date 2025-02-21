@@ -11,7 +11,7 @@ public class Softess {
 
     public Softess(String filePath) {
         this.ui  = new UserInterface();
-        this.dataHandler = new DataHandler(filePath);
+        this.dataHandler = new DataHandler();
         this.tasks = new TaskList(dataHandler.loadData());
     }
 
